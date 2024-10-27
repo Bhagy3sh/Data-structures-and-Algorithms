@@ -6,10 +6,10 @@ int a[20];
 
 void enque_front(){
     int ele;
-    printf("Enter the element");
+    printf("Enter the element: ");
     scanf("%d",&ele);
     if((front==0)&&(rear==MAX-1)||(rear+1)==front){
-        printf("Overflow");
+        printf("Overflow\n");
     }
     else if(front==-1&&rear==-1){
         front=0;
@@ -30,11 +30,11 @@ void enque_front(){
 
 void enque_rear(){
     int ele;
-    printf("Enter the element");
+    printf("Enter the element: ");
     scanf("%d",&ele);
     
     if((front==0)&&(rear==MAX-1)||(rear+1)==front){
-        printf("Overflow");
+        printf("Overflow\n");
     }
     else if(front==-1&&rear==-1){
         front=rear=0;
@@ -49,7 +49,7 @@ void enque_rear(){
 void deque_rear(){ //rear 
     int item;
     if((front==-1)&&(rear==-1)){
-        printf("Underflow");
+        printf("Underflow\n");
     }
     else if(front==rear){
       item=a[rear];
@@ -82,47 +82,53 @@ void deque_front(){ //front
         front=(front+1)%MAX;
     }
 }
-void displayQueue(){
-    if(front==-1){
-        printf("Empty queue");
+void displayQueue() {
+    if (front == -1) {
+        printf("The queue is empty.\n");
         return;
     }
-    printf("The queue is \n");
-   if(front<=rear){
-       for(int i=front;i<=rear;i++){
-           printf("%d\t",a[i]);
-       }
-   }else{
-       for(int i=front;i<MAX;i++){
-           printf("%d\t",a[i]);
-       }
-       for(int i=0;i<=rear;i++){
-           printf("%d\t",a[i]);
-       }
-   }
+
+    printf("\nQueue (Front to Rear):\n");
+    printf("Front -> ");
+    
+    if (front <= rear) {
+        for (int i = front; i <= rear; i++) {
+            printf("%d, ", a[i]);
+        }
+    } else {
+        for (int i = front; i < MAX; i++) {
+            printf("%d, ", a[i]);
+        }
+        for (int i = 0; i <= rear; i++) {
+            printf("%d, ", a[i]);
+        }
+    }
+    
+    printf("<- Rear\n");
 }
+
 void main()
 {
     int ch;
    
-    printf("Enter size");
+    printf("Enter size: ");
     scanf("%d",&MAX);
 
-do{
+	do{
         printf("1.Insertion through Front-  2.Insertion through rear- 3.Deletion through  front- 4.Deletion through rear 5.display \n");
-scanf("%d",&ch);
-switch(ch){
-    case 1:enque_front();
-    break;
-    case 2:enque_rear();
-    break;
-    case 3:deque_front();
-    break;
-    case 4:deque_rear();
-    break;
-    case 5:displayQueue();
-    break;
-    default:printf("Invalid");
-}
-}while(ch==1||ch==2||ch==3||ch==4||ch==5);
+		scanf("%d",&ch);
+		switch(ch){
+		    case 1:enque_front();
+		    break;
+		    case 2:enque_rear();
+		    break;
+		    case 3:deque_front();
+		    break;
+		    case 4:deque_rear();
+		    break;
+		    case 5:displayQueue();
+		    break;
+		    default:printf("Invalid");
+		}
+	}while(ch>0 && ch<6);
 }
